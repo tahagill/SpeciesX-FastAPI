@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Archive{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1 class="mt-5">Your SpeciesX Archive</h1>
+
+        <!-- Success Alert for Deletion -->
+        {% if request.query_params.get('delete_success') %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Deleted Successfully!</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endif %}
+        
+        <!-- Success Alert for Editing -->
+        {% if request.query_params.get('edit_success') %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Edited Successfully!</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endif %}
+
+        <form method="get" action="/archive" class="form-inline my-3">
+            <input type="text" name="search" class="form-control" placeholder="Search..." value="{{ search }}">
+            <button type="submit" class="btn btn-primary ml-2">Search</button>
+        </form>
+
+        <div class="row">
+            {% for gene in newGenes %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ gene.species_name }}</h5>
+                            <p class="card-text">DNA Sequence: {{ gene.dna_sequence }}</p>
+                            <p class="card-text">Description: {{ gene.description }}</p>
+                            
+                            <!-- Edit Button -->
+                            <form action="/edit/{{ gene.id }}" method="get" style="display:inline;">
+                                <button type="submit" class="btn btn-warning btn-sm" title="Edit">
+                                    <img src="https://img.icons8.com/ios-filled/24/ffffff/edit--v1.png" alt="Edit" />
+                                </button>
+                            </form>
+
+                            <!-- Delete Button -->
+                            <form action="/delete/{{ gene.id }}" method="post" style="display:inline;">
+                                <button type="submit" class="btn btn-danger btn-sm" title="Delete">
+                                    <img src="https://img.icons8.com/ios-filled/24/ffffff/trash.png" alt="Delete" />
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <p>No entries found.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
