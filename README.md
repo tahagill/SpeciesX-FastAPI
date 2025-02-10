@@ -23,7 +23,7 @@
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/USERNAME/SpeciesX.git
+    git clone https://github.com/tahagill/SpeciesX-FastApi.git
     cd SpeciesX
     ```
 
