@@ -1,14 +1,23 @@
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
-# Replace 'your_mongodb_uri' with your actual MongoDB URI
-client = MongoClient('mongodb+srv://tahagill99:N8FadUL9LvSu85dB@cluster0.cajih.mongodb.net/dummy_gene')
+# --------------------------
+# MongoDB Connection
+# --------------------------
+# Replace with your MongoDB connection string
+MONGODB_URI = "mongodb+srv://tahagill99:N8FadUL9LvSu85dB@cluster0.cajih.mongodb.net/dummy_gene"
 
-# Replace 'your_database_name' and 'your_collection_name' with your actual database and collection names
+# Initialize MongoDB client
+client = MongoClient(MONGODB_URI)
+
+# Select the database and collection
 db = client['dummy_gene']
 collection = db['dummy01']
 
-# Generate 10 additional entries for the MongoDB collection with the specified fields.
+# --------------------------
+# Additional Data to Insert
+# --------------------------
+# List of additional entries for the MongoDB collection
 additional_data = [
     {
         "_id": ObjectId("670cf1a52ec30dff7613614a"),
@@ -72,11 +81,18 @@ additional_data = [
     }
 ]
 
+# --------------------------
+# Insert Data into MongoDB
+# --------------------------
 # Insert the additional data into the collection
-result = collection.insert_many(additional_data)
+try:
+    result = collection.insert_many(additional_data)
+    print("Data inserted successfully! Inserted IDs:", result.inserted_ids)
+except Exception as e:
+    print(f"Error inserting data: {e}")
 
-# Print the IDs of the inserted documents
-print("Inserted document IDs:", result.inserted_ids)
-
-# Close the MongoDB connection
+# --------------------------
+# Close MongoDB Connection
+# --------------------------
+# Close the MongoDB client connection
 client.close()

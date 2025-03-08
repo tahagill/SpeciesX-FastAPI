@@ -1,13 +1,22 @@
 from pymongo import MongoClient
 
+# --------------------------
+# MongoDB Connection
+# --------------------------
 # Replace with your MongoDB connection string
-client = MongoClient("mongodb+srv://tahagill99:N8FadUL9LvSu85dB@cluster0.cajih.mongodb.net/dummy_gene")
+MONGODB_URI = "mongodb+srv://tahagill99:N8FadUL9LvSu85dB@cluster0.cajih.mongodb.net/dummy_gene"
+
+# Initialize MongoDB client
+client = MongoClient(MONGODB_URI)
 
 # Select the database and collection
 db = client['dummy_gene']
 collection = db['dummy_users']
 
-# Fake user data (without email)
+# --------------------------
+# Fake User Data
+# --------------------------
+# List of fake user data (without email)
 fake_users_db = [
     {
         "username": "john_doe",
@@ -29,9 +38,18 @@ fake_users_db = [
     }
 ]
 
-# Insert the data
-result = collection.insert_many(fake_users_db)
+# --------------------------
+# Insert Data into MongoDB
+# --------------------------
+# Insert the fake user data into the collection
+try:
+    result = collection.insert_many(fake_users_db)
+    print("Data inserted successfully! Inserted IDs:", result.inserted_ids)
+except Exception as e:
+    print(f"Error inserting data: {e}")
 
-print("Data inserted successfully!")
-
+# --------------------------
+# Close MongoDB Connection
+# --------------------------
+# Close the MongoDB client connection
 client.close()
