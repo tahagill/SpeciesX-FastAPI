@@ -1,6 +1,6 @@
 # SpeciesX 🧬
 
-**SpeciesX** is a FastAPI web application that allows users to store and manage species data. It provides basic CRUD operations to add, view, update, and delete species. The app uses **MongoDB** as the database, and includes basic user authentication with **JWT** and **OAuth2**. The frontend is built with **HTML** and **CSS** to ensure a smooth user experience.
+**SpeciesX** is a FastAPI web application that allows users to store and manage species data. It provides basic CRUD operations to add, view, update, and delete species. The app uses **MongoDB** as the database, and includes basic user authentication with **JWT** and **OAuth2**. The frontend is built with **HTML** and **CSS** to ensure a smooth user experience
 
 ## 🛠️ Tech Stack
 
