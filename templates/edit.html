@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container">
         <h1 class="mt-5">Edit Gene Entry</h1>
-        <form method="post" action="/update/{{ gene._id }}">
+        <form method="post" action="/update/{{ gene._id }}" autocomplete="off">
             <div class="form-group">
                 <label for="species_name">Species Name</label>
                 <input type="text" class="form-control" id="species_name" name="species_name" value="{{ gene.species_name }}" required>
